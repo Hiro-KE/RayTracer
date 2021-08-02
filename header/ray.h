@@ -24,4 +24,4 @@ public:
 
     location orig;
     vec4 dir;
-}
+};
