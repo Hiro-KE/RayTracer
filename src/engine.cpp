@@ -1,8 +1,8 @@
-#include <engine.h>
+#include <RayTracer/engine.h>
 
 engine::engine() 
 {
-    origin = vec4(0.f); 
+    origin = vec4(0.f, 0.f, 0.f); 
     horizontal = vec4(viewport_width, 0., 0.);
     vertical = vec4(0., viewport_height, 0.);
     lower_left_corner = origin - horizontal/2. - vertical/2. - vec4(0., 0., focal_length);

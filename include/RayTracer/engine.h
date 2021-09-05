@@ -1,7 +1,6 @@
 #pragma once
 
 #include "vec4.h"
-#include "color.h"
 #include "ray.h"
 
 class engine
