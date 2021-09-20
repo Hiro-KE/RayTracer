@@ -2,19 +2,18 @@
 
 #include "vec4.h"
 #include "ray.h"
+#include <RayTracer/hittable_list.h>
 
-class engine
+class render
 {
 
 public:
 
-    engine();
+    render();
 
     void init();
 
-    double hit_sphere(const location &center, const double radius, const ray& r);
-
-    color ray_color(const ray& r);
+    color ray_color(const ray& r, const hittable& world);
 
     // Image
     const float aspect_ratio = 16.f / 9.f;
@@ -31,4 +30,6 @@ public:
     vec4 horizontal;
     vec4 vertical;
     vec4 lower_left_corner;
+
+    hittable_list world;
 };

@@ -1,26 +1,27 @@
-#include <RayTracer/engine.h>
+#include <RayTracer/render.h>
 #include <RayTracer/color.h>
 
 int main(int, char**) {
     
-    engine* Engine = new engine();
-    
+    render* Render = new render();
+    Render->init();
+
     // Write to a file
     freopen("output.ppm","w",stdout);
 
-    std::cout << "P3\n" << Engine->image_width << ' ' << Engine->image_height << "\n255\n";
+    std::cout << "P3\n" << Render->image_width << ' ' << Render->image_height << "\n255\n";
 
-    for (int j = Engine->image_height-1; j >= 0; --j) 
+    for (int j = Render->image_height-1; j >= 0; --j) 
     {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
-        for (int i = 0; i < Engine->image_width; ++i) {
+        for (int i = 0; i < Render->image_width; ++i) {
             
             // Set up UV
-            double u = double(i) / (Engine->image_width - 1.);
-            double v = double(j) / (Engine->image_height - 1.);
+            double u = double(i) / (Render->image_width - 1.);
+            double v = double(j) / (Render->image_height - 1.);
             
-            ray r(Engine->origin, Engine->lower_left_corner + u * Engine->horizontal + v * Engine->vertical - Engine->origin);
-            color pixel_color(Engine->ray_color(r));
+            ray r(Render->origin, Render->lower_left_corner + u * Render->horizontal + v * Render->vertical - Render->origin);
+            color pixel_color(Render->ray_color(r, Render->world));
             write_color_ppm(std::cout, pixel_color);
         }
     }
