@@ -9,6 +9,7 @@ class vec4
 public:
 
     vec4() : e{0, 0, 0, 0} {}
+    vec4(const double e) : e{e, e, e, e} {};
     vec4(const double e0, const double e1, const double e2) : e{e0, e1, e2, 0.f} {};
     vec4(const double e0, const double e1, const double e2, const double e3) : e{e0, e1, e2, e3} {};
 
