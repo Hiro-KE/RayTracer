@@ -1,2 +1,3 @@
 # RayTracer
-A path tracer that will render shapes and will implement the base systems to display cool stuff.
+A path tracer that renders shapes and implements the base systems to display cool stuff.
+At the moment, this is based on Peter Shirley's books, however it will be converted into an engine like for setting up scenes or other.
