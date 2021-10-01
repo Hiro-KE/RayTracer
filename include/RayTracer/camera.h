@@ -1,6 +1,7 @@
 #pragma once
 
 #include <RayTracer/utility.h>
+#include <RayTracer/common.h>
 
 class camera
 {

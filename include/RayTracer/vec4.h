@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <RayTracer/utility.h>
 
 class vec4
 {
@@ -60,6 +61,16 @@ public:
         return std::sqrt(length_squared());
     }
 
+    inline static vec4 random()
+    {
+        return vec4(random_double(), random_double(), random_double(), random_double());
+    }
+
+    inline static vec4 random(const double min, const double max)
+    {
+        return vec4(random_double(min,max), random_double(min,max), random_double(min,max), random_double(min,max));
+    }    
+
 public:
     double e[4];
 
@@ -116,4 +127,23 @@ inline vec4 cross(const vec4 &u, const vec4 &v) {
 inline vec4 unit_vector(const vec4 v)
 {
     return v / v.length();
+}
+
+inline vec4 random_in_unit_sphere()
+{
+    while (true)
+    {
+        auto p = vec4::random(-1., 1.);
+        if (p.length_squared() >= 1)
+        {
+            continue;
+        }
+        return p;
+    }
+    return vec4(.5, .5, .5, .5);
+}
+
+inline vec4 random_unit_vector()
+{
+    return unit_vector(random_in_unit_sphere());
 }

@@ -41,8 +41,3 @@ inline double clamp(const double x, const double min, const double max)
     if (x > max) return max;
     return x;
 }
-
-// Commong headers
-
-#include <RayTracer/ray.h>
-#include <RayTracer/vec4.h>
