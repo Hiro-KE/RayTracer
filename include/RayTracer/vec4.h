@@ -147,3 +147,16 @@ inline vec4 random_unit_vector()
 {
     return unit_vector(random_in_unit_sphere());
 }
+
+inline vec4 random_in_hemisphere(const vec4& normal)
+{
+    vec4 in_unit_sphere = random_in_unit_sphere();
+    if (dot(in_unit_sphere, normal) > 0.) // In the same hemisphere as the normal
+    {
+        return in_unit_sphere;
+    }
+    else
+    {
+        return -in_unit_sphere;
+    }
+}
