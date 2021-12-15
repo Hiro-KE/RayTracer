@@ -12,8 +12,15 @@ render::render()
 
 void render::init() 
 {
-    world.add(make_shared<sphere>(location(0., 0., -2.), .5));
-    world.add(make_shared<sphere>(location(0., -100.5, -1.), 100.));
+    auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
+    auto material_center = make_shared<dielectric>(1.5);
+    auto material_left   = make_shared<dielectric>(1.5);
+    auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
+
+    world.add(make_shared<sphere>(location( 0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add(make_shared<sphere>(location( 0.0,    0.0, -1.0),   0.5, material_center));
+    world.add(make_shared<sphere>(location(-1.0,    0.0, -1.0),   0.5, material_left));
+    world.add(make_shared<sphere>(location( 1.0,    0.0, -1.0),   0.5, material_right));
 
     // Write to a file
     freopen("output.ppm","w",stdout);
@@ -59,8 +66,16 @@ color render::ray_color(const ray& r, const hittable& world, const int depth)
     hit_record rec;
     if (world.hit(r, 0.001, infinity, rec))
     {
-        location target = rec.p + random_in_hemisphere(rec.normal);
-        return 0.5 * ray_color(ray(rec.p, target - rec.p), world, depth - 1);
+        ray scattered;
+        color attenuation;
+        if(rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+        {
+            return attenuation * ray_color(scattered, world, depth-1);
+        }
+        else 
+        {
+            return color(0.);
+        }
     }
 
     vec4 unit_direction = unit_vector(r.direction());

@@ -2,8 +2,8 @@
 
 int main(int, char**) {
     
-    render* Render = new render();
-    Render->init();
-    Render->process();
+    render Render;
+    Render.init();
+    Render.process();
     return 0;
 }
