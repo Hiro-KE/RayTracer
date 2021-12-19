@@ -10,6 +10,8 @@ public:
 
     camera();
 
+    camera(const double vfov, const double aspect_ratio);
+
     ray get_ray(double u, double v) const;
 
 private:

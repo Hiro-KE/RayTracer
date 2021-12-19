@@ -61,6 +61,10 @@ public:
 
     virtual bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const override;
 
+private:
+
+    static double reflectance(const double cosine, const double ref_idx);
+
 public:
 
     double ir; // Index of Refraction
