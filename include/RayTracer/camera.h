@@ -10,9 +10,9 @@ public:
 
     camera();
 
-    camera(const double vfov, const double aspect_ratio);
+    camera(const location look_from, const location look_at, const vec3 vup, const double vfov, const double aspect_ratio);
 
-    ray get_ray(double u, double v) const;
+    ray get_ray(const double s, const double t) const;
 
 private:
 
@@ -20,8 +20,8 @@ private:
 
     location lower_left_corner;
 
-    vec4 horizontal;
+    vec3 horizontal;
 
-    vec4 vertical;
+    vec3 vertical;
 
 };

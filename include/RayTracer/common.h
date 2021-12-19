@@ -1,4 +1,4 @@
 // Commong headers
 
 #include <RayTracer/ray.h>
-#include <RayTracer/vec4.h>
+#include <RayTracer/vec3.h>

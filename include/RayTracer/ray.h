@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec4.h"
+#include "vec3.h"
 
 class ray
 {
@@ -8,12 +8,12 @@ class ray
 public:
 
     ray(){};
-    ray(const location& origin, const vec4& direction)
+    ray(const location& origin, const vec3& direction)
         : orig(origin), dir(direction)
     {}
 
     inline location origin() const {return orig;}
-    inline vec4 direction() const {return dir;}
+    inline vec3 direction() const {return dir;}
 
     inline location at(double t) const
     {
@@ -23,5 +23,5 @@ public:
 public:
 
     location orig;
-    vec4 dir;
+    vec3 dir;
 };

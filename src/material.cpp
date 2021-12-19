@@ -25,7 +25,7 @@ bool lambertian::scatter(const ray& r_in, const hit_record& rec, color& attenuat
 
 bool metal::scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const 
 {
-    vec4 reflected_direction = reflect(unit_vector(r_in.direction()),rec.normal);
+    vec3 reflected_direction = reflect(unit_vector(r_in.direction()),rec.normal);
     scattered = ray(rec.p, reflected_direction + fuzz*random_in_unit_sphere());
     attenuation = albedo;
     return (dot(scattered.direction(), rec.normal) > 0); 
@@ -38,13 +38,13 @@ bool dielectric::scatter(const ray& r_in, const hit_record& rec, color& attenuat
     attenuation = color(1., 1., 1.);
     double refraction_ratio = rec.front_face ? (1./ir) : ir;
 
-    vec4 unit_direction = unit_vector(r_in.direction());
+    vec3 unit_direction = unit_vector(r_in.direction());
 
     double cos_theta = fmin(dot(-unit_direction, rec.normal), 1.);
     double sin_theta = sqrt(1. - cos_theta*cos_theta);
     
     bool cannot_refract = refraction_ratio * sin_theta > 1.;
-    vec4 direction;
+    vec3 direction;
     
     if (cannot_refract || reflectance(cos_theta, refraction_ratio) > random_double())
     {
