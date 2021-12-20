@@ -22,10 +22,10 @@ private:
 
     // Image
     const float aspect_ratio = 16.f / 9.f;
-    const int image_width = 1270;
+    const int image_width = 126;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 250;
-    const int max_depth = 100;
+    const int samples_per_pixel = 100;
+    const int max_depth = 20;
 
     // World
 
@@ -33,5 +33,5 @@ private:
 
     // Camera
 
-    camera cam = camera(location(-2, 2, 1), location(0, 0, -1), vec3(0, 1, 0), 50., aspect_ratio);
+    camera cam;
 };
