@@ -79,7 +79,7 @@ public:
 };
 
 // Aliases
-using location = vec3;
+using point3 = vec3;
 using color = vec3;
 
 

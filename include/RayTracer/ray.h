@@ -8,20 +8,20 @@ class ray
 public:
 
     ray(){};
-    ray(const location& origin, const vec3& direction)
-        : orig(origin), dir(direction)
-    {}
+    ray(const point3& origin, const vec3& direction, const double time = .0) : orig(origin), dir(direction), tm(time){};
 
-    inline location origin() const {return orig;}
+    inline point3 origin() const {return orig;}
     inline vec3 direction() const {return dir;}
+    inline double time() const {return tm;}
 
-    inline location at(double t) const
+    inline point3 at(double t) const
     {
         return orig + t*dir;
     }
 
 public:
 
-    location orig;
+    point3 orig;
     vec3 dir;
+    double tm;
 };
